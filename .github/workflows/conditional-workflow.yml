@@ -1,0 +1,23 @@
+name: conditional workflow
+on:
+  pull_request:
+    types: [opened, reopened]
+jobs:
+  print_pr_size_large:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.additions >= 10 }}
+    steps:
+      - run: echo '🤯 This PR is large!'
+      - run: echo '${{ github.event.pull_request.additions }}'
+  print_pr_size_small:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.additions < 10 }}
+    steps:
+      - run: echo 'This is a baby PR 🐣'
+      - run: echo '${{ github.event.pull_request.additions }}'
+  add_labels:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: julrocas/pr-size-labeler@main
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
