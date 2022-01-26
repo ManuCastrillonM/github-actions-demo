@@ -5,7 +5,7 @@ on:
 jobs:
   print_pr_size:
     runs-on: ubuntu-latest
-    if: '{{ github.event.pull_request.additions >= 3 }}'
+    if: ${{ github.event.pull_request.additions >= 3 }}
     steps:
       - run: echo 'This PR is large!'
       - run: echo '{{ github.event.pull_request.additions }}'
