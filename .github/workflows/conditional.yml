@@ -1,0 +1,9 @@
+name: conditional workflow
+on:
+  pull_request:
+    types: [opened, reopened]
+jobs:
+  env:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ toJSON(github.event) }}

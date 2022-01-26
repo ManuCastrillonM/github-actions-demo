@@ -1,9 +1,0 @@
-name: condional workflow
-on:
-  pull_request:
-    types: [opened, reopened]
-jobs:
-  - env:
-      EVENT_CONTEXT: ${{ toJSON(github.event) }}
-      run: |
-        echo $EVENT_CONTEXT
